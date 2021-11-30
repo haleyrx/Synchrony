@@ -1,3 +1,5 @@
+# Code is adapted from smeschke/head nod detection
+
 import cv2
 import numpy as np
 
