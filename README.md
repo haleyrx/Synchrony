@@ -21,6 +21,14 @@ The head nod detection primarily relies on peak detection using the 2D y-axis mo
 
 After clusters of head nods are detected, the frequency of each nod is approximated using a fast Fourier transform. `headNod.py` returns the number of detected head nod clusters as well as the frequencies and duration of each nod cluster. 
 
+`headNod.py` can be executed from the command line. It takes command line arguments as follows:
+
+```
+python detectNod.py -i [PATH_TO_DATA] -o [OUTPUT_PATH]
+```
+
+The total number of nods will be detected and a CSV file with frequencies, duration, etc. will be saved to the specified output file. 
+
 
 
 
