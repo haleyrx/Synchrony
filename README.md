@@ -16,6 +16,14 @@ Our current approach is as follows:
 2. Once a face is found, we calculate the approximate center point of the face using the bounding rectangle produced by the Cascade Classifier. 
 3. The optical flow of the center point is calculated. If the total displacement in the y-axis exceeds a defined threshold, then we classify this movement as a head nod. A threshold of 175 pixels was used to detect a head nod.
 
+The optical flow approach takes a live webcam feed as input and is run from the command line: 
+
+```
+python optflow.py
+```
+To exit out of the application, press `q` on the keyboard. 
+
+
 ### Peak Detection Using OpenFace Facial Landmarks
 The head nod detection primarily relies on peak detection using the 2D y-axis momements of the center of the nose (facial landmark #33 - for addtional details on OpenFace landmarks and outputs, see [here](https://github.com/TadasBaltrusaitis/OpenFace/wiki/Output-Format)). A peak is estimated to be a single head nod. Head nod clusters can consist of multiple peaks/nods and are defined based on a threshold of how far distinct nods should be spaced out. A threshold of 2 seconds means that any peak that is 2 seconds from the last peak will be classified as a new, separate nod. 
 
