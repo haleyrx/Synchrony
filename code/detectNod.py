@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 from scipy.fft import rfft, rfftfreq
 import argparse
+import time
 
 def read_openface_data(filepath):
     '''
@@ -146,6 +147,8 @@ def get_statistics(df, signal_column, nod_array, fs):
 
 
 def main():
+    starttime = time.time()
+
     # get command line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input', help='file path to OpenFace csv')
@@ -161,8 +164,12 @@ def main():
     nod_list = detect_nod(df_raw, peak_indices=peak_indices, gap_threshold=1.5)
     number_nods, stats = get_statistics(df_raw, signal_column='y_33', nod_array=nod_list, fs=30)
 
+    endtime = time.time()
+    total_runtime = endtime - starttime
+
     # print and save results
     print(f'Total number of nods detected: {number_nods}')
+    print(f'Total execution time: {round(total_runtime ,2)} seconds')
     stats.to_csv(args.output, index=False)
 
 
